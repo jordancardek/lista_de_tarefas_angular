@@ -1,8 +1,8 @@
 <!-- card -->
 <div class="container mt-5" >
 	<div class="row mt-3">
-		<div class="col-4">
-			<div class="modal-dialog modal-md" role="document">
+		<div class="col-md-6 col-lg-5">
+			<div class="modal-dialog modal-md">
 				<div class="modal-content rounded-4 shadow">
 					<div class="modal-body p-5">
 						<div class="row">
@@ -12,20 +12,20 @@
 									<div id="textajd">
 										<i class="pd-1 fa-solid fa-pen-to-square fa-1x"></i>
 										<div>										
-											<p>Insira o texto no campo de entrada para adicionar itens à sua lista de tarefas.</p>
+											<p>Insira o texto no campo abaixo para adicionar itens à sua lista de tarefas.</p>
 										</div>
 									</div>
 									<div id="textajd">
 										<i class="fa-solid fa-check fa-1x" ></i>
 										<div>									
-											<p>Click em cima do item na lista para marcalo como concluido</p>
+											<p>Clique em cima do item para marcar uma tarefa como concluída.</p>
 										</div>
 									</div>
 									
 									<div id="textajd">
 										<i class="fa-solid fa-trash fa-1x"></i>	
 										<div>									
-											<p> Clique no x remover para remover um item da sua lista.</p>
+											<p> Clique no "x" para remover um item da sua lista.</p>
 										</div>
 									</div>
 								</div>				
@@ -33,8 +33,8 @@
 						</div>
 						<div class="row">
 							<div class="col-12">
-								<input [(ngModel)]="novaTarefa" type="text" placeholder="Novo Item..." class="form-control border border-dark" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-								<button (click)="adicionarTarefa()" type="button" class="btn btn-lg btn-primary mt-3 w-100" data-bs-dismiss="modal">Salvar tarefa <i class="fas fa-pencil-alt"></i></button>
+								<input [(ngModel)]="novaTarefa" type="text" placeholder="Novo Item..." class="form-control border border-dark" maxlength="41" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+								<button (click)="adicionarTarefa()" type="button" class="btn btn-lg btn-primary mt-3 w-100" data-bs-dismiss="modal">Salvar Tarefa <i class="fas fa-pencil-alt"></i></button>
 							</div>
 						</div>
 					</div>
@@ -43,15 +43,19 @@
 		</div>
 		
 <!-- Itens da Lista -->
-		<div class="col-6">
+		<div class="col-md-6 col-lg-5">
 			<div class="row">
-				<div class="listaItems col-12">
-				<ul class="col-12 offset-0 col-sm-8 offset-sm-2 w-100">
-					<li *ngFor="let tarefa of tarefas; let i = index" aria-describedby="inputGroup-sizing-lg" class="w-100">
-						<span (click)="tarefaCompleta(i)" [class.completed]="tarefa.completa">{{ tarefa.nome }}</span>
-						<button class="mb-2" (click)="removerTarefa(i)">X</button>
-					</li>
-				</ul>
+				<div class="listaItems col-12 mt-2">
+					<ul class="col-12 offset-0 col-sm-8 offset-sm-2 w-100">
+						<li *ngFor="let tarefa of tarefas; let i = index" 
+							aria-describedby="inputGroup-sizing-lg" 
+							class="w-100" 
+							(click)="tarefaCompleta(i)" 
+							[class.completa]="tarefa.completa">
+							<span>{{ tarefa.nome }}</span>
+							<button (click)="removerTarefa(i); $event.stopPropagation()">X</button>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
